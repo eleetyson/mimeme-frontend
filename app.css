@@ -45,6 +45,10 @@ body {
   font-style: italic;
 }
 
+div.modal-body h5 {
+  font-size: 0.9rem;
+}
+
 footer a:link,
 footer a:visited {
   color: #2a5aa7;

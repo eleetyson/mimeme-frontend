@@ -1,1 +1,1 @@
-// Meme.fetchMemes()
+Meme.fetchMemes()
