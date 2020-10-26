@@ -31,7 +31,7 @@ class Meme {
     }
   }
 
-  async renderMeme() { //
+  async renderMeme() { // add content to each meme's card and corresponding modal
     let title = document.getElementById(`card${this.id}`).querySelector("h5")
     title.innerText = this.name
 
@@ -40,6 +40,10 @@ class Meme {
 
     let description = document.getElementById(`modal${this.id}`).querySelector(".modal-body h5")
     description.innerText = this.description
+
+    for (let comment of this.comments) {
+      
+    }
   }
 
 
