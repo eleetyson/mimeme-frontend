@@ -44,3 +44,14 @@ body {
 .modal-body p {
   font-style: italic;
 }
+
+footer a:link,
+footer a:visited {
+  color: #2a5aa7;
+}
+
+footer a:hover,
+nav a:hover {
+  opacity: 0.5;
+  text-decoration: none;
+}
