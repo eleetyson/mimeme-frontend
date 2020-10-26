@@ -8,3 +8,39 @@ html,
 body {
   height: 100%;
 }
+
+/* creating responsive layout for cards */
+.card-deck {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+  grid-row-gap: 1.2rem;
+}
+
+/* styling the image for each card */
+.card-img-top {
+  width: 100%;
+  height: 40vh;
+  object-fit: cover;
+}
+
+/* adding a box shadow and hover transition to each card */
+.card {
+  transition: .2s ease-in-out;
+  box-shadow: 0 6px 10px rgba(0,0,0,.08), 0 0 6px rgba(0,0,0,.05);
+}
+
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(0,0,0,.12), 0 4px 8px rgba(0,0,0,.06);
+  cursor: pointer;
+}
+
+/* styling modal text */
+.modal-body form,
+.modal-body p {
+  text-align: right;
+}
+
+.modal-body p {
+  font-style: italic;
+}

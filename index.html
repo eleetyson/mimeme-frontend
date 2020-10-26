@@ -15,15 +15,39 @@
   </nav>
 
   <main role="main">
-    <div class="container col-lg-8 col-md-10 col-sm-10">
+    <div class="container col-lg-8 col-md-10 col-sm-10 py-4">
       <div class="card-deck">
 
         <div class="card">  <!-- start card 1-->
-          <img src="wuphf.png" class="card-img-top">
+          <img src="img/pepe.png" class="card-img-top img-fluid">
           <div class="card-body">
-            <h5 class="card-title stretched-link" data-toggle="modal" data-target="#modal1">first meme title</h5>
+            <h5 class="card-title stretched-link" data-toggle="modal" data-target="#modal1">*Pepe the Frog*</h5>
           </div>
         </div>
+
+        <div class="modal fade" id="modal1" tabindex="-1" role="dialog" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h4 class="modal-title" id="exampleModalLabel">*Title of First Modal*</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <img class="img-fluid" src="img/pepe.png"><br><br>
+                <h5>*Pepe's description will go here*</h5><br>
+                <p>*first pepe comment here*</p>
+                <form>
+                  <div class="form-group">
+                    <textarea class="form-control rounded-lg" id="form1" placeholder="What do you think of this meme?" rows="2"></textarea>
+                  </div>
+                  <button type="submit" class="btn btn-outline-success rounded-lg">Add Comment</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div> <!--end card 1-->
 
 
 
