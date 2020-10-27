@@ -3,7 +3,7 @@ const API_URL = "http://localhost:3000"
 class Meme {
 
   static allMemes = [] // class-level array to hold all meme objects
-  static search = new MiniSearch({ fields: ['name', 'description'] })
+  static miniSearch = new MiniSearch({ fields: ['name', 'description'] })
   // using MiniSearch to create a search engine that will index the meme objects' names and descriptions
 
   constructor(meme) { // instantiate new memes and add them to the class array
@@ -32,14 +32,22 @@ class Meme {
       meme.renderMeme()
     }
 
-    // after content and event listeners added to all memes, invoke SOME FUNCTION to implement search
     this.collectSearchData()
+    // after content and event listeners added to all memes, invoke collectSearchData() to index the memes
   }
 
-//
   static async collectSearchData() {
-    this.search.addAll(this.allMemes) // index the meme objects to be searched
-    // add an event listener to the search submit button
+    this.miniSearch.addAll(this.allMemes) // index the meme objects to be searched
+    let searchForm = document.querySelector("form.d-flex")
+    searchForm.addEventListener("submit", this.filter)
+    // add an event listener for search action
+  }
+
+  static async filter() {
+    event.preventDefault()
+    // Meme.miniSearch.search("the_users_search", { prefix: true })
+    console.log(this)
+    console.log(event)
   }
 
   async renderMeme() { // add content to each meme's card and corresponding modal
