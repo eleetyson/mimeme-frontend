@@ -54,7 +54,9 @@ class Meme {
 
   async addComment() {
     event.preventDefault()
+    
     let proposedc = event.target.querySelector("textarea").value // grab proposed comment from form
+    event.target.querySelector("textarea").value = "" // clear out the textarea field after doing so
     let meme_id = this.id
 
     if (!!proposedc) {
@@ -67,7 +69,6 @@ class Meme {
 
         let response = await fetch(`${API_URL}/comments`, configObj)
         let jsObj = await response.json()
-        event.target.querySelector("textarea").value = "" // clear out the textarea field after comment submission
 
         // create the new comment object and add it to the modal, above the form
         let modal = document.getElementById(`modal${this.id}`).querySelector(".modal-body")
