@@ -52,30 +52,36 @@ class Meme {
     form.addEventListener("submit", this.addComment.bind(this)) // add an event
   }
 
-  async addComment() { // upon comment submission, make a POST request via fetch and add it to the modal
+  async addComment() {
     event.preventDefault()
-    //
-    // let proposedComment = event.target.querySelector("textarea").value // grab proposed comment from form
-    // if (!!proposedComment) {
-    //   try {
-    //     let configObj = {
-    //       method: "POST",
-    //       headers: {"Content-Type": "application/json", "Accept": "application/json"},
-    //       body: JSON.stringify( {comment: {proposedComment, this.id} } )
-    //     }
-    //
-    //     let response = await fetch(`${API_URL}/comments`, configObj)
-    //     let jsObj = await response.json()
-    //     // instantiate the new comment and append to the DOM
-    //       // let newComment = new Comment(something)
-    //       // use that insertBefore technique in the above method
-    //
-    //     event.target.querySelector("textarea").value = "" // clear out the textarea field after comment submission
-    //
-    //   } // end if block
-    // } // end addComment method
+    let proposedc = event.target.querySelector("textarea").value // grab proposed comment from form
+    let meme_id = this.id
 
-  }
+    if (!!proposedc) {
+      try { // upon comment submission, make a POST request via fetch and add it to the modal
+        let configObj = {
+          method: "POST",
+          headers: {"Content-Type": "application/json", "Accept": "application/json"},
+          body: JSON.stringify( {comment: {proposedc, meme_id} } )
+        }
+
+        let response = await fetch(`${API_URL}/comments`, configObj)
+        let jsObj = await response.json()
+        event.target.querySelector("textarea").value = "" // clear out the textarea field after comment submission
+
+        // create the new comment object and add it to the modal, above the form
+        let modal = document.getElementById(`modal${this.id}`).querySelector(".modal-body")
+        let form = document.getElementById(`modal${this.id}`).querySelector(".modal-body form")
+        let p = document.createElement("p")
+        p.innerText = jsObj.content
+        modal.insertBefore(p, form)
+
+      } catch(err) {
+        alert(err)
+      }
+    } // end if block
+
+  } // end addComment method
 
 
 
