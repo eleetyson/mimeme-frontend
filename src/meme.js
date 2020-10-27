@@ -60,27 +60,26 @@ class Meme {
 
     } // end if block
 
-    // this.renderShowAllBtn()
-
-    // after returning the results, need to render the Show all memes button
-      // use insertBefore to insert the button and a br tag after it
-
-      // remove this button after it's clicked
-
-    // let showAllBtn = document.createElement("button")
-    // showAllBtn.classList.add("btn", "btn-primary", "btn-block", "rounded-lg")
-    // showAllBtn.setAttribute("type", "button")
-    // showAllBtn.setAttribute("id", "all")
-    // showAllBtn.innerText = "Show all memes"
-    // let deck = document.querySelector
-    // 
-
-    // <button type="button" id="all" class="btn btn-primary btn-block rounded-lg">Show all memes</button><br>
+    this.renderShowAllBtn()
   } // end filter method
 
-  // static async renderShowAllBtn() {
-  //
-  // }
+  // <button type="button" id="all" class="btn btn-primary btn-block rounded-lg">Show all memes</button><br>
+
+// after returning search results, render button which displays all memes on click
+  static async renderShowAllBtn() {
+    let showAllBtn = document.createElement("button")
+    showAllBtn.classList.add("btn", "btn-primary", "btn-block", "rounded-lg")
+    showAllBtn.setAttribute("type", "button")
+    showAllBtn.setAttribute("id", "all")
+    showAllBtn.innerText = "Show all memes"
+
+    let br = document.querySelector("br#break")
+    let parent = br.parentNode
+
+    parent.insertBefore(showAllBtn, br)
+
+    console.log(showAllBtn)
+  }
 
   async renderMeme() { // add content to each meme's card and corresponding modal
     let title = document.getElementById(`card${this.id}`).querySelector("h5")
