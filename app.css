@@ -35,11 +35,15 @@ body {
   cursor: pointer;
 }
 
-/* tweaking bootstrap default form focus borders */
+/* tweaking bootstrap default focus borders */
 .form-group .form-control:focus,
 button#search:focus {
   border-color: #28a745;
   box-shadow: 0 0 0 0.1rem rgba(40, 167, 69, 0.25);
+}
+
+button#all:focus {
+  box-shadow: 0 0 0 0.1rem rgba(137, 196, 244, 1);
 }
 
 /* styling search button */
@@ -51,6 +55,7 @@ button#search {
 .form-group svg {
   font-size: 1.2em;
 }
+
 
 /* styling modal text */
 .modal-body form,

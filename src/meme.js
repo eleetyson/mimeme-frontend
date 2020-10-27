@@ -50,12 +50,13 @@ class Meme {
       // let input = document.querySelector("form.d-flex input").value
     // if (!!input), then...
       // let results = Meme.miniSearch.search(`${input}`, { prefix: true })
-      // for all cards on the page:
+      // for all cards:
         // if their h4 doesn't match any of the titles for the results in the array, then...
         // add a "d-none" class to their classlist
 
     // still need a way to restore all / see all when search field gets cleared out
     // maybe a button for that?
+      // could hide the see all button on page load and remove d-none class upon search 
   }
 
   async renderMeme() { // add content to each meme's card and corresponding modal
