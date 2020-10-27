@@ -60,11 +60,27 @@ class Meme {
 
     } // end if block
 
+    // this.renderShowAllBtn()
+
     // after returning the results, need to render the Show all memes button
       // use insertBefore to insert the button and a br tag after it
 
       // remove this button after it's clicked
+
+    // let showAllBtn = document.createElement("button")
+    // showAllBtn.classList.add("btn", "btn-primary", "btn-block", "rounded-lg")
+    // showAllBtn.setAttribute("type", "button")
+    // showAllBtn.setAttribute("id", "all")
+    // showAllBtn.innerText = "Show all memes"
+    // let deck = document.querySelector
+    // 
+
+    // <button type="button" id="all" class="btn btn-primary btn-block rounded-lg">Show all memes</button><br>
   } // end filter method
+
+  // static async renderShowAllBtn() {
+  //
+  // }
 
   async renderMeme() { // add content to each meme's card and corresponding modal
     let title = document.getElementById(`card${this.id}`).querySelector("h5")
