@@ -54,26 +54,26 @@ class Meme {
 
   async addComment() { // upon comment submission, make a POST request via fetch and add it to the modal
     event.preventDefault()
-
-    let proposedComment = event.target.querySelector("textarea").value // grab proposed comment from form
-    if (!!proposedComment) {
-      try {
-        let configObj = {
-          method: "POST",
-          headers: {"Content-Type": "application/json", "Accept": "application/json"},
-          body: JSON.stringify( {comment: {proposedComment, this.id} } )
-        }
-
-        let response = await fetch(`${API_URL}/comments`, configObj)
-        let jsObj = await response.json()
-        // instantiate the new comment and append to the DOM
-          // let newComment = new Comment(something)
-          // use that insertBefore technique in the above method
-
-        event.target.querySelector("textarea").value = "" // clear out the textarea field after comment submission
-
-      } // end if block
-    } // end addComment method
+    //
+    // let proposedComment = event.target.querySelector("textarea").value // grab proposed comment from form
+    // if (!!proposedComment) {
+    //   try {
+    //     let configObj = {
+    //       method: "POST",
+    //       headers: {"Content-Type": "application/json", "Accept": "application/json"},
+    //       body: JSON.stringify( {comment: {proposedComment, this.id} } )
+    //     }
+    //
+    //     let response = await fetch(`${API_URL}/comments`, configObj)
+    //     let jsObj = await response.json()
+    //     // instantiate the new comment and append to the DOM
+    //       // let newComment = new Comment(something)
+    //       // use that insertBefore technique in the above method
+    //
+    //     event.target.querySelector("textarea").value = "" // clear out the textarea field after comment submission
+    //
+    //   } // end if block
+    // } // end addComment method
 
   }
 

@@ -49,6 +49,18 @@ div.modal-body h5 {
   font-size: 0.9rem;
 }
 
+/* styling the fonts for the cards and modals */
+.card,
+.modal-title {
+  font-family: 'Asap Condensed', sans-serif;
+}
+
+/* styling footer and navbar links */
+nav a:link,
+footer a:link {
+  font-family: 'Asap', sans-serif;
+}
+
 footer a:link,
 footer a:visited {
   color: #2a5aa7;
