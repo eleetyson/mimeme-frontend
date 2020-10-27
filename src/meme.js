@@ -41,9 +41,40 @@ class Meme {
     let description = document.getElementById(`modal${this.id}`).querySelector(".modal-body h5")
     description.innerText = this.description
 
+    let modal = document.getElementById(`modal${this.id}`).querySelector(".modal-body")
+    let form = document.getElementById(`modal${this.id}`).querySelector(".modal-body form")
     for (let comment of this.comments) {
-      
+      let p = document.createElement("p")
+      p.innerText = comment.content
+      modal.insertBefore(p, form) // add each comment right above the form
     }
+
+    form.addEventListener("submit", this.addComment.bind(this)) // add an event
+  }
+
+  async addComment() { // upon comment submission, make a POST request via fetch and add it to the modal
+    event.preventDefault()
+
+    let proposedComment = event.target.querySelector("textarea").value // grab proposed comment from form
+    if (!!proposedComment) {
+      try {
+        let configObj = {
+          method: "POST",
+          headers: {"Content-Type": "application/json", "Accept": "application/json"},
+          body: JSON.stringify( {comment: {proposedComment, this.id} } )
+        }
+
+        let response = await fetch(`${API_URL}/comments`, configObj)
+        let jsObj = await response.json()
+        // instantiate the new comment and append to the DOM
+          // let newComment = new Comment(something)
+          // use that insertBefore technique in the above method
+
+        event.target.querySelector("textarea").value = "" // clear out the textarea field after comment submission
+
+      } // end if block
+    } // end addComment method
+
   }
 
 
