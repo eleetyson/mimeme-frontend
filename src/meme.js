@@ -47,23 +47,24 @@ class Meme {
     event.preventDefault()
     let input = document.querySelector("form.d-flex input").value
 
-    if (!!input) // only want to search if search field actually contains text
+    if (!!input) {  // only want to search if search field actually contains text
       let results = Meme.miniSearch.search(`${input}`, { prefix: true })
       let result_ids = results.map(result => result.id)
       let cards = document.querySelectorAll("div.card") // grab the node list of all cards
 
       for (let i = 0; i < cards.length; i++) {
-        // for all cards:
-        // if their h4 doesn't match any of the titles for the results in the array, then...
-        // add a "d-none" class to their classlist
+        if ( result_ids.includes( parseInt(cards[i].id.split("d")[1]) ) ) {
+          cards[i].classList.add("d-none") // if the card doesn't match user's search, hide it
+        }
       }
-    end
+
+    } // end if block
 
     // after returning the results, need to render the Show all memes button
       // use insertBefore to insert the button and a br tag after it
 
       // remove this button after it's clicked
-  }
+  } // end filter method
 
   async renderMeme() { // add content to each meme's card and corresponding modal
     let title = document.getElementById(`card${this.id}`).querySelector("h5")
