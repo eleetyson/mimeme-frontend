@@ -45,9 +45,17 @@ class Meme {
 
   static async filter() {
     event.preventDefault()
-    // Meme.miniSearch.search("the_users_search", { prefix: true })
-    console.log(this)
-    console.log(event)
+
+    // inputted search text
+      // let input = document.querySelector("form.d-flex input").value
+    // if (!!input), then...
+      // let results = Meme.miniSearch.search(`${input}`, { prefix: true })
+      // for all cards on the page:
+        // if their h4 doesn't match any of the titles for the results in the array, then...
+        // add a "d-none" class to their classlist
+
+    // still need a way to restore all / see all when search field gets cleared out
+    // maybe a button for that?
   }
 
   async renderMeme() { // add content to each meme's card and corresponding modal
