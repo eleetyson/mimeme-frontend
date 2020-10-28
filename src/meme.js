@@ -32,8 +32,8 @@ class Meme {
       meme.renderMeme()
     }
 
-    this.collectSearchData()
     // after content and event listeners added to all memes, invoke collectSearchData() to index the memes for searches
+    this.collectSearchData()
   }
 
   async renderMeme() { // add content to each meme's card and corresponding modal
@@ -92,9 +92,31 @@ class Meme {
   static async collectSearchData() {
     this.miniSearch.addAll(this.allMemes) // index the meme objects to be searched
     let searchForm = document.querySelector("form.d-flex")
+    // add event listener to render all cards when search field is cleared out
+    searchForm.addEventListener("keyup", this.clearSearch.bind(this))
+    // and another for normal searches
     searchForm.addEventListener("submit", this.filter.bind(this))
-    // add an event listener for search action
   }
+
+// if the search bar is empty after keyup, render all cards and remove unnecessary elements
+  static async clearSearch() {
+    if (!document.querySelector("form.d-flex input").value) {
+
+      let cards = document.querySelectorAll("div.card")
+      for (let i = 0; i < cards.length; i++) {
+        cards[i].classList.remove("d-none")
+      }
+
+      if (!!document.querySelector("p.text-center")) {
+        document.querySelector("p.text-center").remove()
+      }
+
+      if (!!document.querySelector("button#all")) {
+        document.querySelector("button#all").remove()
+      }
+
+    } // end if block
+  } // end clearSearch method
 
   static async filter() {
     event.preventDefault()
@@ -112,53 +134,18 @@ class Meme {
       }
 
     } // end if block
-    // disable search after rendering results and if no results, display message too
-    document.querySelector("form.d-flex input").setAttribute("disabled", "true")
-    document.querySelector("form.d-flex button").setAttribute("disabled", "true")
 
-    // if every card is hidden -- meaning the search returned no results -- display this message
+    // if every card is hidden -- meaning no results found -- display this message (if not already displayed)
     if ( Array.from(document.querySelectorAll(".card")).every(e => e.classList.contains("d-none")) ) {
-      let p = document.createElement("p")
-      p.classList.add("text-center")
-      p.innerText = "No results found. Try returning to all memes and searching again."
-      document.querySelector("#end").after(p)
+      if (!document.querySelector("p.text-center")) {
+        let p = document.createElement("p")
+        p.classList.add("text-center")
+        p.innerText = "No results found. Try searching again."
+        document.querySelector("#end").after(p)
+      }
     }
-    Meme.renderShowAllBtn()
+
   } // end filter method
-
-// after returning search results, render a button which displays all memes on click
-  static async renderShowAllBtn() {
-    let showAllBtn = document.createElement("button")
-    showAllBtn.classList.add("btn", "btn-primary", "btn-block", "rounded-lg")
-    showAllBtn.setAttribute("type", "button")
-    showAllBtn.setAttribute("id", "all")
-    showAllBtn.innerText = "Back to all memes"
-
-    let br = document.querySelector("br#break")
-    let parent = br.parentNode
-
-    parent.insertBefore(showAllBtn, br)
-
-    // re-render all cards and remove the show all memes button on click
-    // also re-enable the search bar and if necessary, the results message
-    showAllBtn.addEventListener("click", (event) => {
-      event.preventDefault()
-      let cards = document.querySelectorAll("div.card") // grab the node list of all cards
-
-      for (let i = 0; i < cards.length; i++) {
-        cards[i].classList.remove("d-none")
-      }
-
-      showAllBtn.remove()
-      document.querySelector("form.d-flex input").removeAttribute("disabled")
-      document.querySelector("form.d-flex button").removeAttribute("disabled")
-      document.querySelector("form.d-flex input").value = ""
-      if (!!document.querySelector("p.text-center")) {
-        document.querySelector("p.text-center").remove()
-      }
-    }) // end event listener callback
-
-  } // end renderShowAllBtn method
 
 
 } // end Meme class
