@@ -123,6 +123,10 @@ class Meme {
 
       for (let i = 0; i < cards.length; i++) {
         cards[i].classList.remove("d-none") // reset display for all cards in case some are hidden
+        if (!!document.querySelector("p.text-center")) { // remove no results message if still displayed
+          document.querySelector("p.text-center").remove()
+        }
+
         if ( !result_ids.includes( parseInt(cards[i].id.split("d")[1]) ) ) {
           cards[i].classList.add("d-none") // if a card doesn't match user's search, hide it again
         }
