@@ -1,4 +1,5 @@
 const API_URL = "http://localhost:3000"
+const cards = document.querySelectorAll("div.card") // the node list of all cards
 
 class Meme {
 
@@ -27,7 +28,7 @@ class Meme {
     }
   }
 
-  static async renderMemes() { // for each meme object in the class array, invoke this instance method
+  static renderMemes() { // for each meme object in the class array, invoke this instance method
     for (let meme of this.allMemes) {
       meme.renderMeme()
     }
@@ -36,7 +37,7 @@ class Meme {
     this.collectSearchData()
   }
 
-  async renderMeme() { // add content to each meme's card and corresponding modal
+  renderMeme() { // add content to each meme's card and corresponding modal
     let title = document.getElementById(`card${this.id}`).querySelector("h5")
     title.innerText = this.name
 
@@ -89,7 +90,7 @@ class Meme {
 
   } // end addComment method
 
-  static async collectSearchData() {
+  static collectSearchData() {
     this.miniSearch.addAll(this.allMemes) // index the meme objects to be searched
     let searchForm = document.querySelector("form.d-flex")
     // add event listener to render all cards when search field is cleared out
@@ -99,10 +100,9 @@ class Meme {
   }
 
 // if the search bar is empty after keyup, render all cards and remove unnecessary elements
-  static async clearSearch() {
+  static clearSearch() {
     if (!document.querySelector("form.d-flex input").value) {
 
-      let cards = document.querySelectorAll("div.card")
       for (let i = 0; i < cards.length; i++) {
         cards[i].classList.remove("d-none")
       }
@@ -118,14 +118,13 @@ class Meme {
     } // end if block
   } // end clearSearch method
 
-  static async filter() {
+  static filter() {
     event.preventDefault()
     let input = document.querySelector("form.d-flex input").value
 
     if (!!input) {  // only want to search if search field actually contains text
       let results = Meme.miniSearch.search(`${input}`, { prefix: true })
       let result_ids = results.map(result => result.id)
-      let cards = document.querySelectorAll("div.card") // grab the node list of all cards
 
       for (let i = 0; i < cards.length; i++) {
         if ( !result_ids.includes( parseInt(cards[i].id.split("d")[1]) ) ) {
