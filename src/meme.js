@@ -1,4 +1,5 @@
-const API_URL = "http://localhost:3000"
+// const API_URL = "http://localhost:3000"
+const API_URL = "https://mimeme.herokuapp.com"
 const cards = document.querySelectorAll("div.card") // the node list of all cards
 
 class Meme {
