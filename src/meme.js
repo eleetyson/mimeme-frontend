@@ -102,7 +102,6 @@ class Meme {
 // if the search bar is empty after keyup, render all cards and remove unnecessary elements
   static clearSearch() {
     if (!document.querySelector("form.d-flex input").value) {
-
       for (let i = 0; i < cards.length; i++) {
         cards[i].classList.remove("d-none")
       }
@@ -110,11 +109,6 @@ class Meme {
       if (!!document.querySelector("p.text-center")) {
         document.querySelector("p.text-center").remove()
       }
-
-      if (!!document.querySelector("button#all")) {
-        document.querySelector("button#all").remove()
-      }
-
     } // end if block
   } // end clearSearch method
 
@@ -135,7 +129,7 @@ class Meme {
     } // end if block
 
     // if every card is hidden -- meaning no results found -- display this message (if not already displayed)
-    if ( Array.from(document.querySelectorAll(".card")).every(e => e.classList.contains("d-none")) ) {
+    if ( Array.from(cards).every(e => e.classList.contains("d-none")) ) {
       if (!document.querySelector("p.text-center")) {
         let p = document.createElement("p")
         p.classList.add("text-center")
