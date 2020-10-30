@@ -118,8 +118,12 @@ class Meme {
     let input = document.querySelector("form.d-flex input").value
 
     if (!!input) {  // only want to search if search field actually contains text
-      let results = Meme.miniSearch.search(`${input}`, { prefix: true })
-      let result_ids = results.map(result => result.id)
+      let results1 = Meme.miniSearch.search(`${input}`, { prefix: true }) // for prefix match
+      let result_ids = results1.map(result => result.id)
+      if (result_ids.length === 0) { // for typo match if no prefix matches
+        let results2 = Meme.miniSearch.search(`${input}`, { fuzzy: 0.3 })
+        result_ids = results2.map(result => result.id)
+      }
 
       for (let i = 0; i < cards.length; i++) {
         cards[i].classList.remove("d-none") // reset display for all cards in case some are hidden
